@@ -22,7 +22,7 @@ services:
     build:
       context: ./.docker
     volumes:
-    - ".:/var/www/html/wp-content/plugins/simple-smtp"
+    - ".:/var/www/html/wp-content/plugins/dummy-plugin"
     ports:
     - 8080:80
     - 8443:443
