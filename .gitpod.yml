@@ -1,0 +1,14 @@
+tasks:
+  - init: |
+      chmod 755 .
+      docker-compose pull
+      docker-compose build
+    command: |
+      docker-compose up -d
+      echo "Pausing for MySQL to complete..." && sleep 10
+      docker-compose exec www wp core install --url="https://8080-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}" --title="The numbers, Mason..." --admin_user="admin" --admin_password="password" --admin_email="code@soupbowl.io" --allow-root
+      docker-compose exec www wp plugin activate dummy-plugin --allow-root
+vscode:
+  extensions:
+    - ms-azuretools.vscode-docker
+    - johnbillion.vscode-wordpress-hooks
